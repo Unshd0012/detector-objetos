@@ -2,8 +2,13 @@ package com.unshd.detectionsobjects.core.viewmodel
 
 
 import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,12 +29,10 @@ class PermisosViewModel@Inject constructor(): ViewModel() {
     val galeriaPermissionGranted:LiveData<Boolean> = _galeriaPermissionGranted
     private val _ubicacionPermissionGranted  =MutableLiveData<Boolean>(false)
     val ubicacionPermissionGranted:LiveData<Boolean> = _ubicacionPermissionGranted
-    private val _filesPermissionGranted  =MutableLiveData<Boolean>(false)
-    val filesPermissionGranted:LiveData<Boolean> = _filesPermissionGranted
 
 
     fun setAllPermisionGranted(allPermisionGranted:Boolean){
-        _allPermisionGranted.postValue(allPermisionGranted)
+        _allPermisionGranted.value = allPermisionGranted
     }
     fun setCamaraPermissionGranted(camaraPermissionGranted:Boolean){
         _camaraPermissionGranted.postValue(camaraPermissionGranted)
@@ -40,17 +43,15 @@ class PermisosViewModel@Inject constructor(): ViewModel() {
     fun setUbicacionPermissionGranted(ubicacionPermissionGranted:Boolean){
         _ubicacionPermissionGranted.postValue(ubicacionPermissionGranted)
     }
-    fun setFilesPermissionGranted(filesPermissionGranted:Boolean){
-        _filesPermissionGranted.postValue(filesPermissionGranted)
-    }
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     fun addAllPermisosApi33(){
         _listPermisos.postValue(
             listOf(
-                PermisoApp("Camara","Permiso para usar la camara","Necesario",Manifest.permission.CAMERA,R.mipmap.camara),
-                PermisoApp("Galeria","Permiso para usar la galeria","Necesario",Manifest.permission.READ_MEDIA_IMAGES,R.mipmap.galeria),
-                PermisoApp("Ubicacion","Permiso para usar la ubicacion","Opcional",Manifest.permission.ACCESS_FINE_LOCATION,R.mipmap.ubicacion),
+                PermisoApp("Camara","Este permiso es indispensable para el correcto funcionamiento de la app","Necesario",_camaraPermissionGranted.value!!,Manifest.permission.CAMERA,R.mipmap.camara),
+                PermisoApp("Galeria","Este permiso es esencial para el correcto funcionamiento de la app","Necsario",_galeriaPermissionGranted.value!!,Manifest.permission.READ_MEDIA_IMAGES,R.mipmap.galeria),
+                PermisoApp("Ubicacion","Permiso para usar la ubicacion","Opcional",_ubicacionPermissionGranted.value!!,Manifest.permission.ACCESS_FINE_LOCATION,R.mipmap.ubicacion),
             )
         )
 
@@ -58,22 +59,69 @@ class PermisosViewModel@Inject constructor(): ViewModel() {
     fun addAllPermisos(){
         _listPermisos.postValue(
             listOf(
-                PermisoApp("Camara","Permiso para usar la camara","Necesario",Manifest.permission.CAMERA,R.mipmap.camara),
-                PermisoApp("Galeria","Permiso para usar la galeria","Necesario",Manifest.permission.READ_EXTERNAL_STORAGE,R.mipmap.galeria),
-                PermisoApp("Ubicacion","Permiso para usar la ubicacion","Opcional",Manifest.permission.ACCESS_FINE_LOCATION,R.mipmap.ubicacion))
+                PermisoApp("Camara","Este permiso es indispensable para el correcto funcionamiento de la app","Necesario",_camaraPermissionGranted.value!!,Manifest.permission.CAMERA,R.mipmap.camara),
+                //Importante aqui: En permiso galeria se agrega para leer archivos, no media IMAGE
+                PermisoApp("Galeria","Este permiso es esencial para el correcto funcionamiento de la app","Necesario",_galeriaPermissionGranted.value!!,Manifest.permission.READ_EXTERNAL_STORAGE,R.mipmap.galeria),
+                PermisoApp("Ubicacion","Permiso para usar la ubicacion","Opcional",_ubicacionPermissionGranted.value!!,Manifest.permission.ACCESS_FINE_LOCATION,R.mipmap.ubicacion))
         )
+    }
+    //Revia los permisos en base al numero de version
+    fun checkPermisos(context: Context){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            listPermisos.value?.forEach{
+                p ->
+                p.autorizado = isPermissionGranted(context,p.permiso)
+                when(p.nombre){
+                    "Camara" -> {
+                        _camaraPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                    "Galeria" -> {
+                        _galeriaPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                    "Ubicacion" -> {
+                        _ubicacionPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                }
+            }
+            checkAllPermisionsApi33()
+        }else{
+            checkAllPermisions()
+            listPermisos.value?.forEach{
+                    p ->
+                p.autorizado = isPermissionGranted(context,p.permiso)
+                when(p.nombre){
+                    "Camara" -> {
+                        _camaraPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                    "Galeria" -> {
+                        _galeriaPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                    "Ubicacion" -> {
+                        _ubicacionPermissionGranted.value=isPermissionGranted(context,p.permiso)
+                    }
+                }
+                Log.i("permisos", "checkPermisos: $p")
+            }
+            checkAllPermisions()
+        }
     }
 
     fun checkAllPermisionsApi33(){
-        _allPermisionGranted.postValue(camaraPermissionGranted.value==true &&
-                galeriaPermissionGranted.value==true &&
-                filesPermissionGranted.value==true)
+         setAllPermisionGranted( camaraPermissionGranted.value==true &&
+                galeriaPermissionGranted.value==true)
     }
     fun checkAllPermisions(){
-        _allPermisionGranted.postValue(camaraPermissionGranted.value==true &&
-                galeriaPermissionGranted.value==true &&
-                filesPermissionGranted.value==true)
+         setAllPermisionGranted( camaraPermissionGranted.value==true &&
+                galeriaPermissionGranted.value==true)
     }
+
+    fun isPermissionGranted(context: Context, permiso: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            context,
+            permiso
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
 
 
 
