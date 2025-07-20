@@ -1,5 +1,6 @@
 package com.unshd.detectionsobjects.navigation
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
 import android.util.Log
@@ -51,9 +52,8 @@ fun PermisosScreen(vm:PermisosViewModel,onPermisosOk: () -> Unit){
     val context = LocalContext.current
     val listPermisos by vm.listPermisos.observeAsState()
     val allPermisionGranted by vm.allPermisionGranted.observeAsState()
-    LaunchedEffect (Unit){
-        vm.checkPermisos()
-    }
+    vm.checkPermisos()
+
 
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
         listPermisos?.let { vm.addAllPermisosApi33() }
