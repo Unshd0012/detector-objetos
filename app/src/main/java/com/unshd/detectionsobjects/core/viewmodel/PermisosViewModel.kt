@@ -14,9 +14,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.unshd.detectionsobjects.R
 import com.unshd.detectionsobjects.core.model.PermisoApp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import jakarta.inject.Inject
 
-class PermisosViewModel@Inject constructor(): ViewModel() {
+@HiltViewModel
+class PermisosViewModel@Inject constructor(@ApplicationContext private val context: Context): ViewModel() {
 
     private val _listPermisos = MutableLiveData<List<PermisoApp>>(emptyList())
     val listPermisos: LiveData<List<PermisoApp>> = _listPermisos
@@ -66,7 +69,7 @@ class PermisosViewModel@Inject constructor(): ViewModel() {
         )
     }
     //Revia los permisos en base al numero de version
-    fun checkPermisos(context: Context){
+    fun checkPermisos(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
             listPermisos.value?.forEach{
                 p ->
@@ -121,8 +124,5 @@ class PermisosViewModel@Inject constructor(): ViewModel() {
             permiso
         ) == PackageManager.PERMISSION_GRANTED
     }
-
-
-
 
 }

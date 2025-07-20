@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -50,7 +51,10 @@ fun PermisosScreen(vm:PermisosViewModel,onPermisosOk: () -> Unit){
     val context = LocalContext.current
     val listPermisos by vm.listPermisos.observeAsState()
     val allPermisionGranted by vm.allPermisionGranted.observeAsState()
-    vm.checkPermisos(context)
+    LaunchedEffect (Unit){
+        vm.checkPermisos()
+    }
+
     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
         listPermisos?.let { vm.addAllPermisosApi33() }
     }else{
@@ -67,19 +71,27 @@ fun PermisosScreen(vm:PermisosViewModel,onPermisosOk: () -> Unit){
 
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column (modifier = Modifier.fillMaxSize().padding(innerPadding)){
+        Column (modifier = Modifier.fillMaxSize().padding(innerPadding).background(Color.White)){
             HeadPermisos()
             BodyPermisos(vm)
+            BottomPermisos()
         }
     }
 
 }
 
 @Composable
+fun BottomPermisos() {
+    Column (modifier = Modifier.fillMaxWidth().padding(10.dp)){
+        Image(painter = painterResource(R.drawable.permisosrobot),contentDescription = "")
+    }
+}
+
+@Composable
 fun BodyPermisos(vm: PermisosViewModel) {
     val listPermisos by vm.listPermisos.observeAsState()
     val listSize = listPermisos?.size ?: 0
-    Column (modifier=Modifier.fillMaxWidth()){
+    Column (modifier=Modifier.fillMaxWidth().background(Color.White)){
         LazyColumn {
             items(listSize){ permiso ->
                 CardPermiso(vm,listPermisos!![permiso])
@@ -115,11 +127,11 @@ fun CardPermiso(vm:PermisosViewModel,permiso: PermisoApp) {
     ) { isGranted ->
         when (permiso.nombre) {
             "Camara" -> {vm.setCamaraPermissionGranted(isGranted)
-            vm.checkPermisos(context)}
+            vm.checkPermisos()}
             "Galeria" -> {vm.setGaleriaPermissionGranted(isGranted)
-                vm.checkPermisos(context)}
+                vm.checkPermisos()}
             "Ubicacion" -> {vm.setUbicacionPermissionGranted(isGranted)
-                vm.checkPermisos(context)}
+                vm.checkPermisos()}
         }
 
     }
@@ -131,7 +143,7 @@ fun CardPermiso(vm:PermisosViewModel,permiso: PermisoApp) {
     ){
         Card(modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp).border(2.dp, Color.Black),
+            .padding(5.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)) {
             Row(horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
