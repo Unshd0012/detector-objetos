@@ -38,20 +38,20 @@ import com.unshd.detectionsobjects.R
 import com.unshd.detectionsobjects.core.viewmodel.OpcionesViewModel
 
 @Composable
-fun OpcionesScreen( vm:OpcionesViewModel,onOpcionSeleccionada: (String) -> Unit) {
+fun OpcionesScreen( vm:OpcionesViewModel,onOpcionSeleccionada: (Any) -> Unit) {
 
     vm.loadOpciones()
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column (modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             HeadOpciones()
-            BodyOpciones(vm)
+            BodyOpciones(vm,onOpcionSeleccionada)
             BottomOpciones()
         }
     }
 }
 
 @Composable
-fun BodyOpciones(vm: OpcionesViewModel) {
+fun BodyOpciones(vm: OpcionesViewModel, onOpcionSeleccionada: (Any) -> Unit) {
     val context = LocalContext.current
     val lista by vm.listaOpciones.observeAsState()
     val listaSize = lista?.size ?: 0
@@ -67,6 +67,13 @@ Column (modifier=Modifier.fillMaxWidth()){
                 Card(modifier = Modifier
                     .fillMaxWidth()
                     .padding(5.dp).clickable {
+                        when (opcion.nombre) {
+                            "Camara en Vivo" -> onOpcionSeleccionada(LiveCamera)
+                            "Detector Objetos desde Galeria" -> onOpcionSeleccionada(Detecciones)
+                            "Etiquetado desde Galeria" -> onOpcionSeleccionada(Etiquetados)
+                            "Historial de Detecciones" -> onOpcionSeleccionada(HistorialDetecciones)
+                            "Historial de Etiquetados" -> onOpcionSeleccionada(HistorialEtiquetado)
+                        }
                     },
                     colors = CardDefaults.cardColors(containerColor = Color.White)) {
                     Row(horizontalArrangement = Arrangement.Absolute.SpaceBetween,

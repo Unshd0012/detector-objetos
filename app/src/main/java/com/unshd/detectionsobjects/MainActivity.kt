@@ -67,7 +67,7 @@ class MainActivity : ComponentActivity() {
 
                 composable<HistorialDetecciones> {
                     val vm: HistorialDeteccionesViewModel = hiltViewModel()
-                    HistorialDeteccionesScreen(vm)
+                    HistorialDeteccionesScreen(vm, navController)
                 }
 
                 composable<HistorialEtiquetado> {
