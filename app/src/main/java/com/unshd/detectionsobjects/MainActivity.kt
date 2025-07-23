@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
 
                 composable<HistorialEtiquetado> {
                     val vm: HistorialEtiquetadoViewModel = hiltViewModel()
-                    HistorialEtiquetadoScreen(vm)
+                    HistorialEtiquetadoScreen(vm,navController)
                 }
 
                 composable<LiveCamera> {

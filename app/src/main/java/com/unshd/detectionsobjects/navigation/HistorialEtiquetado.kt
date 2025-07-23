@@ -42,14 +42,15 @@ import com.unshd.detectionsobjects.R
 import com.unshd.detectionsobjects.core.viewmodel.HistorialEtiquetadoViewModel
 
 @Composable
-fun HistorialEtiquetadoScreen(vm:HistorialEtiquetadoViewModel) {
+fun HistorialEtiquetadoScreen(vm:HistorialEtiquetadoViewModel, navController: NavController) {
 
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(modifier = Modifier.fillMaxSize().padding(innerPadding)){
 
             HeadEtiquetados()
-            BottomHistorialEtiquetado()
+            BodyHistorialEtiquetado()
+            BottomHistorialEtiquetado(navController)
         }
     }
 }
@@ -126,15 +127,18 @@ fun BodyHistorialEtiquetado() {
                                     modifier = Modifier.size(50.dp))
                                 Spacer(Modifier.width(10.dp))
                                 Column {
-                                    Text(text = "Nombre", fontSize = 16.sp)
+                                    Text(text = "Bicicleta", fontSize = 16.sp)
                                     Text(text = "19/07/2025 09:53 pm", fontSize = 10.sp)
+                                    Text(text = "Galeria", fontSize = 10.sp)
                                 }
                                 Spacer(Modifier.width(5.dp))
-                                Text(text = "Texto de prueba, este texto es de prueba y es el texto que se encuentra en la descripcion",
+                                Text(text = "Vacations",
                                     fontSize = 15.sp,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
                                     modifier = Modifier.weight(2f))
+                                Spacer(Modifier.width(5.dp))
+                                Text(text = "80 %", fontSize = 10.sp)
                                 Spacer(Modifier.width(5.dp))
                                 Icon(bitmap = ImageBitmap.imageResource(id = R.mipmap.menudetecciones),contentDescription = "",
                                     tint = Color.Unspecified, modifier = Modifier.size(20.dp).clickable {
@@ -152,20 +156,19 @@ fun BodyHistorialEtiquetado() {
 }
 
 @Composable
-@Preview(showBackground = true)
-fun BottomHistorialEtiquetado() {
+fun BottomHistorialEtiquetado(navController: NavController) {
     Column(modifier = Modifier.fillMaxWidth()){
         Row (verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.SpaceBetween,){
             Icon(bitmap = ImageBitmap.imageResource(id = R.drawable.robotetiquetas), tint = Color.Unspecified, contentDescription = "",
                 modifier = Modifier.size(150.dp))
             Column (modifier = Modifier){
                 Text(text = "Aun no tienes imagenes etiquetadas", fontSize = 25.sp, fontWeight = FontWeight.Bold)
-                Text(text = "Seleccionar Imagen", fontSize = 15.sp)
+                Text(text = "Seleccionar Imagen", fontSize = 15.sp,modifier = Modifier.clickable{
+                    navController.navigate(Etiquetados)
+                })
             }
-            /*Button(onClick = { navController.navigate(Detecciones) }) {
-                Icon(bitmap = ImageBitmap.imageResource(id = android.R.drawable.ic_menu_add), tint = Color.Unspecified, contentDescription = "")
 
-            }*/
+
         }
 
     }
