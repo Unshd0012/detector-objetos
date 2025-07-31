@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ImageLabelDao {
@@ -23,8 +24,8 @@ interface ImageLabelDao {
     suspend fun update(label: ImageLabelEntity)
 
     /** Elimina una etiqueta. */
-    @Delete
-    suspend fun delete(label: ImageLabelEntity)
+    @Query("DELETE FROM image_labels WHERE sessionId = :session")
+    suspend fun deleteBySession(session: String)
 
     /** Borra todas las filas de la tabla. */
     @Query("DELETE FROM image_labels")
@@ -35,11 +36,14 @@ interface ImageLabelDao {
     suspend fun getById(id: Int): ImageLabelEntity?
 
     /** Devuelve todas las etiquetas ordenadas por fecha descendente. */
-    @Query("SELECT * FROM image_labels ORDER BY timestamp DESC")
+    @Query("SELECT * FROM image_labels ORDER BY timestamp ASC")
     suspend fun getAll(): List<ImageLabelEntity>
 
+    @Query("SELECT * FROM image_labels ORDER BY timestamp DESC")
+    fun getAllFlow(): Flow<List<ImageLabelEntity>>
+
     /** Filtra por sesión. */
-    @Query("SELECT * FROM image_labels WHERE sessionId = :session ORDER BY timestamp DESC")
+    @Query("SELECT * FROM image_labels WHERE sessionId = :session ORDER BY timestamp ASC")
     suspend fun getBySession(session: String): List<ImageLabelEntity>
 
 }

@@ -9,7 +9,7 @@ import com.unshd.detectionsobjects.core.db.text.TextBlockEntity
 
 @Database(
     entities = [ImageLabelEntity::class, TextBlockEntity::class],
-    version = 1,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

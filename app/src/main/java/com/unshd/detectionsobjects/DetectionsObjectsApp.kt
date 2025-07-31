@@ -12,6 +12,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @HiltAndroidApp
@@ -37,4 +40,14 @@ object DatabaseModule {
 
     @Provides
     fun provideTextBlockDao(db: AppDatabase): TextBlockDao = db.textBlockDao()
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object CoroutineModule {
+    @Provides @IoDispatcher fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
+    @Retention(AnnotationRetention.BINARY)
+    @Qualifier
+    annotation class IoDispatcher
 }

@@ -103,4 +103,6 @@ dependencies {
     //Serialization
     implementation(libs.kotlinx.serialization.json)
 
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
 }

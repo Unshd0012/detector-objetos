@@ -8,11 +8,12 @@ data class ImageLabelEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val sessionId: String,
     val title: String,
-    val description: String,
+    val titlePorcentaje: String,
     val imageUrl: String,
     val uri: String,
     val origen: String,
-    val labelText: String,
+    val label: String,
     val confidence: Float,
+    val index: Int,
     val timestamp: Long
 )

@@ -69,7 +69,7 @@ Column (modifier=Modifier.fillMaxWidth()){
                     .padding(5.dp).clickable {
                         when (opcion.nombre) {
                             "Camara en Vivo" -> onOpcionSeleccionada(LiveCamera)
-                            "Detector Objetos desde Galeria" -> onOpcionSeleccionada(Detecciones)
+                            "Text Detector Galeria" -> onOpcionSeleccionada(Detecciones)
                             "Etiquetado desde Galeria" -> onOpcionSeleccionada(Etiquetados)
                             "Historial de Detecciones" -> onOpcionSeleccionada(HistorialDetecciones)
                             "Historial de Etiquetados" -> onOpcionSeleccionada(HistorialEtiquetado)
