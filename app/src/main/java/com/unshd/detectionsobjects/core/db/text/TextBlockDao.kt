@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TextBlockDao {
@@ -36,7 +37,7 @@ interface TextBlockDao {
 
     /** Devuelve todos los bloques ordenados por fecha descendente. */
     @Query("SELECT * FROM text_blocks ORDER BY timestamp DESC")
-    suspend fun getAll(): List<TextBlockEntity>
+    suspend fun getAll(): Flow<List<TextBlockEntity>>
 
     /** Filtra por sesión. */
     @Query("SELECT * FROM text_blocks WHERE sessionId = :session ORDER BY timestamp DESC")
