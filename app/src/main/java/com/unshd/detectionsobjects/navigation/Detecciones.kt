@@ -42,7 +42,10 @@ import coil.compose.AsyncImage
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.unshd.detectionsobjects.R
+import com.unshd.detectionsobjects.core.db.text.TextBlockDao
+import com.unshd.detectionsobjects.core.db.text.TextBlockEntity
 import com.unshd.detectionsobjects.core.viewmodel.DeteccionesViewModel
+import java.util.UUID
 
 @Composable
 fun DeteccionesScreen(vm:DeteccionesViewModel){
@@ -107,10 +110,8 @@ fun BodyDetecciones(vm: DeteccionesViewModel) {
             .fillMaxWidth()
             .height(300.dp)
     )
-    val bitmap by vm.bitmap.observeAsState()
-    if (bitmap != null) {
-        processImageText(vm,bitmap!!)
-    }
+
+
 
 }
 
@@ -131,19 +132,7 @@ fun BottomDetecciones(vm: DeteccionesViewModel) {
     }
 }
 
-fun processImageText(vm: DeteccionesViewModel,bitmap: Bitmap){
-    val recognizer = com.google.mlkit.vision.text.TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
-    val image = InputImage.fromBitmap(bitmap,0)
-    val result = recognizer.process(image)
-        .addOnSuccessListener { visionText ->
-            Log.i("TextRecognition",visionText.text)
-            vm.setText(visionText.text)
-        }
-        .addOnFailureListener { e ->
-            Log.e("TextRecognition",e.message.toString())
-        }
 
-}
 
 @Composable
 fun CopyText(textToShare: String) {

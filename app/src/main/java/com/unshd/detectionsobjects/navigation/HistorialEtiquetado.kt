@@ -89,6 +89,7 @@ fun HeadHistorialEtiquetados() {
 @Composable
 fun BodyHistorialEtiquetado(vm:HistorialEtiquetadoViewModel) {
     var itemSeleccionado by remember { mutableStateOf<ImageLabelEntity?>(null) }
+
     val lista by vm.listaEtiquetados.collectAsState()
     val listaFiltrada = lista?.distinctBy { it.sessionId }
     var texto by remember { mutableStateOf("") }
@@ -139,7 +140,7 @@ fun BodyHistorialEtiquetado(vm:HistorialEtiquetadoViewModel) {
         Column (modifier = Modifier.fillMaxWidth()) {
             LazyColumn {
                 items(listaSize){ index ->
-                    val label = listaFiltrada!!.get(index)
+                    val label = listaFiltrada!![index]
                     ElevatedCard(
                         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),

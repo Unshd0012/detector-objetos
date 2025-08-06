@@ -1,6 +1,9 @@
 package com.unshd.detectionsobjects.navigation
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -73,6 +76,7 @@ Column (modifier=Modifier.fillMaxWidth()){
                             "Etiquetado desde Galeria" -> onOpcionSeleccionada(Etiquetados)
                             "Historial de Detecciones" -> onOpcionSeleccionada(HistorialDetecciones)
                             "Historial de Etiquetados" -> onOpcionSeleccionada(HistorialEtiquetado)
+                            "Permisos" -> vm.settingsAppPermisos()
                         }
                     },
                     colors = CardDefaults.cardColors(containerColor = Color.White)) {
@@ -119,3 +123,4 @@ fun BottomOpciones() {
             Text("OPCIONES DISPONIBLES", fontSize = 25.sp, fontWeight = FontWeight.Bold)
         }
     }
+

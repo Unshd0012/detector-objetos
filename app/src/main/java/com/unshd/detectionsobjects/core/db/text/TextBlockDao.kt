@@ -37,7 +37,7 @@ interface TextBlockDao {
 
     /** Devuelve todos los bloques ordenados por fecha descendente. */
     @Query("SELECT * FROM text_blocks ORDER BY timestamp DESC")
-    suspend fun getAll(): Flow<List<TextBlockEntity>>
+     fun getAll(): Flow<List<TextBlockEntity>>
 
     /** Filtra por sesión. */
     @Query("SELECT * FROM text_blocks WHERE sessionId = :session ORDER BY timestamp DESC")

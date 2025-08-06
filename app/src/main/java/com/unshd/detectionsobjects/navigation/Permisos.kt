@@ -24,8 +24,12 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+
+
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,23 +65,29 @@ fun PermisosScreen(vm:PermisosViewModel,onPermisosOk: () -> Unit){
         listPermisos?.let { vm.addAllPermisos() }
     }
 
-
-
+    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+        Column(horizontalAlignment = Alignment.CenterHorizontally,verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize().padding(innerPadding).background(Color.White)
+        ) {
+            CircularProgressIndicator(modifier = Modifier.size(100.dp))
+        }
+    }
     Log.i("permisos", "PermisosScreen: $allPermisionGranted")
     if(allPermisionGranted==true){
         onPermisosOk()
-    }
+    }else {
 
 
-
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column (modifier = Modifier.fillMaxSize().padding(innerPadding).background(Color.White)){
-            HeadPermisos()
-            BodyPermisos(vm)
-            BottomPermisos()
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            Column(
+                modifier = Modifier.fillMaxSize().padding(innerPadding).background(Color.White)
+            ) {
+                HeadPermisos()
+                BodyPermisos(vm)
+                BottomPermisos()
+            }
         }
     }
-
 }
 
 @Composable

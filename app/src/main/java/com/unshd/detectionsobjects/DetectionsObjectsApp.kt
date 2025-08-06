@@ -3,6 +3,9 @@ package com.unshd.detectionsobjects
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.TextRecognizer
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.unshd.detectionsobjects.core.db.AppDatabase
 import com.unshd.detectionsobjects.core.db.label.ImageLabelDao
 import com.unshd.detectionsobjects.core.db.text.TextBlockDao
@@ -50,4 +53,14 @@ object CoroutineModule {
     @Retention(AnnotationRetention.BINARY)
     @Qualifier
     annotation class IoDispatcher
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object TextRecognitionModule {
+    @Provides @TextRecognitionHilt fun provideTextRecognizer(): TextRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
+
+    @Retention(AnnotationRetention.BINARY)
+    @Qualifier
+    annotation class TextRecognitionHilt
 }
