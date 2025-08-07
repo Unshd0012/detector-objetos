@@ -1,44 +1,33 @@
 package com.unshd.detectionsobjects.core.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.unshd.detectionsobjects.CoroutineModule
-import com.unshd.detectionsobjects.core.db.label.ImageLabelDao
-import com.unshd.detectionsobjects.core.db.label.ImageLabelEntity
 import com.unshd.detectionsobjects.core.db.text.TextBlockDao
 import com.unshd.detectionsobjects.core.db.text.TextBlockEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @HiltViewModel
-class HistorialDeteccionesViewModel@Inject constructor(private val dao: TextBlockDao,@CoroutineModule.IoDispatcher private val io: CoroutineDispatcher): ViewModel() {
+class HistorialDeteccionesViewModel@Inject constructor(private val dao: TextBlockDao, @CoroutineModule.IoDispatcher private val io: CoroutineDispatcher): ViewModel() {
 
 
     val listaDeteccionesText: StateFlow<List<TextBlockEntity>> =
         dao.getAll().stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
-    fun loadHistorialDetecciones(){
-        viewModelScope.launch {
-            val lista = dao.getAll()
-            /*lista.forEach {
-                Log.d("historial_detecciones",it.toString())
-            }*/
-        }
-    }
+
 
 
 
     fun insertHistorialDetecciones(deteccion:TextBlockEntity){
-        viewModelScope.launch {
+        viewModelScope.launch (io){
             dao.insert(deteccion)
-            loadHistorialDetecciones()
+
         }
 
     }
@@ -50,7 +39,7 @@ class HistorialDeteccionesViewModel@Inject constructor(private val dao: TextBloc
     }
 
     fun deleteDeteccion(deteccion: TextBlockEntity){
-        viewModelScope.launch {
+        viewModelScope.launch (io){
             dao.delete(deteccion)
 
         }
