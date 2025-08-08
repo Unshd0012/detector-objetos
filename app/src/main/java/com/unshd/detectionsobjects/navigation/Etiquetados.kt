@@ -1,7 +1,6 @@
 package com.unshd.detectionsobjects.navigation
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -39,13 +38,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.label.ImageLabeling
-import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import com.unshd.detectionsobjects.R
-import com.unshd.detectionsobjects.core.db.label.ImageLabelEntity
 import com.unshd.detectionsobjects.core.viewmodel.EtiquetadosViewModel
-import java.util.UUID
 
 @Composable
 fun EtiquetadosScreen(vm:EtiquetadosViewModel){
