@@ -74,26 +74,26 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.mlkit)
 
-// ML Kit
+    // ML Kit
     implementation(libs.google.mlkit.objects.detection)
     implementation(libs.google.mlkit.image.labeling)
     implementation(libs.google.mlkit.text.recognition)
 
-// Room
+    // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
 
-// Hilt / Dagger
+    // Hilt / Dagger
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-// Kotlin Coroutines
+    // Kotlin Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-//View Model
+    //View Model
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
@@ -103,6 +103,7 @@ dependencies {
     //Serialization
     implementation(libs.kotlinx.serialization.json)
 
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    //Coil
+    implementation(libs.coil)
 
 }

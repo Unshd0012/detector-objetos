@@ -40,11 +40,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
             val navController = rememberNavController()
-
             NavHost(navController, startDestination = Permisos) {
-
                 composable<Permisos> {
                     val vm: PermisosViewModel = hiltViewModel()
                     PermisosScreen(
@@ -52,39 +49,32 @@ class MainActivity : ComponentActivity() {
                         onPermisosOk = { navController.navigate(Home) }
                     )
                 }
-
                 composable<Home> {
                     val vm: HomeViewModel = hiltViewModel()
                     HomeScreen(vm) { navController.navigate(Opciones) }
 
                 }
-
                 composable<Opciones> {
                     val vm: OpcionesViewModel = hiltViewModel()
                     OpcionesScreen(vm) { destino ->
                         navController.navigate(destino)  }
                 }
-
                 composable<HistorialDetecciones> {
                     val vm: HistorialDeteccionesViewModel = hiltViewModel()
                     HistorialDeteccionesScreen(vm, navController)
                 }
-
                 composable<HistorialEtiquetado> {
                     val vm: HistorialEtiquetadoViewModel = hiltViewModel()
                     HistorialEtiquetadoScreen(vm,navController)
                 }
-
                 composable<LiveCamera> {
                     val vm: LiveCameraViewModel = hiltViewModel()
                     LiveCameraScreen(vm)
                 }
-
                 composable<Detecciones> {
                     val vm: DeteccionesViewModel = hiltViewModel()
                     DeteccionesScreen(vm)
                 }
-
                 composable<Etiquetados> {
                     val vm: EtiquetadosViewModel = hiltViewModel()
                     EtiquetadosScreen(vm)

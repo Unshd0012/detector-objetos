@@ -16,7 +16,6 @@ import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import com.unshd.detectionsobjects.CoroutineModule
 import com.unshd.detectionsobjects.core.db.label.ImageLabelDao
 import com.unshd.detectionsobjects.core.db.label.ImageLabelEntity
-import com.unshd.detectionsobjects.core.model.LabelingGoogle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import jakarta.inject.Inject

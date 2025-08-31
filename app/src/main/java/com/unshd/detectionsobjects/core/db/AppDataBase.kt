@@ -9,7 +9,7 @@ import com.unshd.detectionsobjects.core.db.text.TextBlockEntity
 
 @Database(
     entities = [ImageLabelEntity::class, TextBlockEntity::class],
-    version = 3,
+    version = 3, //Cada cambio en la base de datos o tabla requiere un nuevo número.
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

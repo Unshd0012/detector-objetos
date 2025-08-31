@@ -158,7 +158,7 @@ fun BodyHistorialDetecciones(vm:HistorialDeteccionesViewModel) {
                                     val zonaHoraria = ZoneId.systemDefault() // Usará la zona del dispositivo
                                     val fechaHora = instant.atZone(zonaHoraria)
                                     val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy hh:mm a",
-                                        Locale("es", "MX")
+                                        Locale.forLanguageTag("es-MX")
                                     )
                                     val fechaFormateada = fechaHora.format(formatter)
                                     Text(text = fechaFormateada, fontSize = 10.sp)
@@ -283,7 +283,7 @@ fun DetalleDeteccionView(vm: HistorialDeteccionesViewModel,
                         Text("Session ID: ${deteccion.sessionId}")
                         val fecha = Instant.ofEpochMilli(deteccion.timestamp)
                             .atZone(ZoneId.systemDefault())
-                            .format(DateTimeFormatter.ofPattern("dd MMMM yyyy hh:mm a", Locale("es", "MX")))
+                            .format(DateTimeFormatter.ofPattern("dd MMMM yyyy hh:mm a", Locale.forLanguageTag("es-MX")))
                         Text("Fecha: $fecha")
 
                     }

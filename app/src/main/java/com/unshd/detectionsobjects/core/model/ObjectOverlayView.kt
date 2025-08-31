@@ -68,7 +68,6 @@ class ObjectOverlayView(context: Context) : View(context) {
                 context.resources,
                  R.mipmap.camara
             )
-
             //canvas.drawBitmap(iconBitmap, left - iconBitmap.width / 2, top - iconBitmap.height, null)
         }
     }
