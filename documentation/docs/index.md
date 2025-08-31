@@ -8,6 +8,8 @@ Aquí encontrarás detalles técnicos, ejemplos de uso y evidencias del proceso 
 - [📂 Fragmentos de código utilizados](desarrollo/codigo.md)
 - [🖼️ Capturas de pantalla del sistema](desarrollo/capturas.md)
 - [📘 Manual de usuario](uso/manual-usuario.md)
+- [ Estructura de la base de datos]
+
 
 ## 🎯 Características principales
 
