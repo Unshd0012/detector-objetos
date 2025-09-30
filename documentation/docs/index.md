@@ -1,22 +1,46 @@
 # Detector de Objetos App
 
-Documentación oficial de la aplicación **Detector de Objetos**, desarrollada en Android usando ML Kit. 
-Aquí encontrarás detalles técnicos, ejemplos de uso y evidencias del proceso de desarrollo.
+Documentación de la aplicación de detección de objetos en Android con **Google ML Kit**.
 
 ## 📄 Secciones 
 
-- [📂 Fragmentos de código utilizados](desarrollo/codigo.md)
-- [🖼️ Capturas de pantalla del sistema](desarrollo/capturas.md)
+- [📂 Estructuras de código importantes](desarrollo/codigo.md)
 - [📘 Manual de usuario](uso/manual-usuario.md)
-- [ Estructura de la base de datos]
 
+---
 
 ## 🎯 Características principales
 
-- Detección de objetos en tiempo real con la cámara del dispositivo.
-- Etiquetado de imágenes almacenadas en la galería.
-- Historial de etiquetas y detecciones en base de datos local.
-- Interfaz amigable desarrollada con Jetpack Compose.
+- Detección de objetos en tiempo real con la cámara del dispositivo.  
+- Etiquetado de imágenes almacenadas en la galería.  
+- Detección de texto en imágenes.  
+- Interfaz amigable desarrollada con Jetpack Compose.  
 
+---
 
+## ⚙️ Funciones principales
 
+### 🔴 Detección en vivo usando la cámara
+La app muestra la cámara en vivo y procesa los objetos en tiempo real.
+
+---
+
+### 🖼️ Etiquetado de imágenes desde galería
+
+<p align="center">
+  <img src="img/capturas/etiquetados.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:400px; width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+</p>
+
+---
+
+### 🔤 Detección de texto en imágenes desde galería
+
+<p align="center">
+  <img src="img/capturas/texto.jpeg" alt="Ejemplo de detección de texto" style="max-width:400px; width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+</p>
+
+### 🔤 Detección usando la camara en vivo
+
+<p align="center">
+  <img src="img/capturas/camera-live.jpeg" alt="Ejemplo de detección de texto" style="max-width:400px; width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+</p>
