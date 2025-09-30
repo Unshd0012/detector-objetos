@@ -85,9 +85,9 @@ Extrae texto de imágenes seleccionadas desde la galería con tecnología OCR de
 Imágenes de muestra del funcionamiento de la aplicación:
 
 <div align="center" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-  <img src="documentation/docs/img/uso/3-pantalla-inicio.jpeg" alt="Pantalla de inicio" style="max-width:280px;width:70%; height:auto;  border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
-  <img src="documentation/docs/img/uso/4-menu-opciones.jpeg" alt="Menú de opciones" style="max-width:280px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
-  <img src="documentation/docs/img/capturas/historial.jpeg" alt="Historial de detecciones" style="max-width:280px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/uso/3-pantalla-inicio.jpeg" alt="Pantalla de inicio" style="max-width:150px;width:70%; height:auto;  border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/uso/4-menu-opciones.jpeg" alt="Menú de opciones" style="max-width:150px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/capturas/historial.jpeg" alt="Historial de detecciones" style="max-width:150px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
 </div>
 
 ---
