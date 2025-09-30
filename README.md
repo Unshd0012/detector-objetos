@@ -34,7 +34,7 @@ Permite identificar objetos en tiempo real usando la cámara trasera del disposi
 Selecciona Camará en vivo y tendras acceso a la detección usando la camara de tu dispositivo.
 
 <p align="center">
-  <img src="documentation/docs/img/capturas/camera-live.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:420px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+  <img src="documentation/docs/img/capturas/camera-live.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:300px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
 ### 🖼️ Etiquetado de imágenes desde galería
@@ -42,7 +42,7 @@ Selecciona Camará en vivo y tendras acceso a la detección usando la camara de 
 Selecciona una imagen desde la galería y la aplicación genera etiquetas descriptivas.
 
 <p align="center">
-  <img src="documentation/docs/img/capturas/etiquetados.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:420px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+  <img src="documentation/docs/img/capturas/etiquetados.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:300px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
 ---
@@ -52,7 +52,7 @@ Selecciona una imagen desde la galería y la aplicación genera etiquetas descri
 Extrae texto de imágenes seleccionadas desde la galería con tecnología OCR de ML Kit.
 
 <p align="center">
-  <img src="documentation/docs/img/capturas/texto.jpeg" alt="Ejemplo de detección de texto" style="max-width:420px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
+  <img src="documentation/docs/img/capturas/texto.jpeg" alt="Ejemplo de detección de texto" style="max-width:300px;width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
 ---
