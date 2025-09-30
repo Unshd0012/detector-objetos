@@ -33,7 +33,7 @@ Permite identificar objetos en tiempo real usando la cámara trasera del disposi
 
 Selecciona Camará en vivo y tendras acceso a la detección usando la camara de tu dispositivo.
 
-<p>
+<p align="center">
   <img src="documentation/docs/img/capturas/camera-live.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:300px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
@@ -41,7 +41,7 @@ Selecciona Camará en vivo y tendras acceso a la detección usando la camara de 
 
 Selecciona una imagen desde la galería y la aplicación genera etiquetas descriptivas.
 
-<p>
+<p align="center">
   <img src="documentation/docs/img/capturas/etiquetados.jpeg" alt="Ejemplo de etiquetado de imágenes" style="max-width:300px; width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
@@ -51,7 +51,7 @@ Selecciona una imagen desde la galería y la aplicación genera etiquetas descri
 
 Extrae texto de imágenes seleccionadas desde la galería con tecnología OCR de ML Kit.
 
-<p>
+<p align="center">
   <img src="documentation/docs/img/capturas/texto.jpeg" alt="Ejemplo de detección de texto" style="max-width:300px;width:70%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.15);">
 </p>
 
@@ -85,9 +85,9 @@ Extrae texto de imágenes seleccionadas desde la galería con tecnología OCR de
 Imágenes de muestra del funcionamiento de la aplicación:
 
 <div align="center" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-  <img src="documentation/docs/img/uso/3-pantalla-inicio.jpeg" alt="Pantalla de inicio" style="max-width:280px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
-  <img src="documentation/docs/img/uso/4-menu-opciones.jpeg" alt="Menú de opciones" style="max-width:280px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
-  <img src="documentation/docs/img/capturas/historial.jpeg" alt="Historial de detecciones" style="max-width:280px; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/uso/3-pantalla-inicio.jpeg" alt="Pantalla de inicio" style="max-width:280px;width:70%; height:auto;  border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/uso/4-menu-opciones.jpeg" alt="Menú de opciones" style="max-width:280px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
+  <img src="documentation/docs/img/capturas/historial.jpeg" alt="Historial de detecciones" style="max-width:280px;width:70%; height:auto; border-radius:10px; box-shadow:0 4px 14px rgba(0,0,0,.12);">
 </div>
 
 ---
